@@ -31,14 +31,14 @@ export const policyTypeEnum = pgEnum("policy_type", [
   "HOME",
   "LIFE",
   "HEALTH",
-  "COMMERCIAL"
+  "OTHER"
 ])
 
 export const policyStatusEnum = pgEnum("policy_status", [
   "ACTIVE",
+  "PENDING",
   "EXPIRED",
-  "PENDING_RENEWAL",
-  "LAPSED"
+  "CANCELLED"
 ])
 
 export const policiesTable = pgTable("policies", {
@@ -46,6 +46,7 @@ export const policiesTable = pgTable("policies", {
   customerId: uuid("customer_id")
     .references(() => customersTable.id)
     .notNull(),
+  policyNumber: text("policy_number").notNull(),
   policyType: policyTypeEnum("policy_type").notNull(),
   premiumAmount: numeric("premium_amount", {
     precision: 15,

@@ -37,7 +37,7 @@ export const customersTable = pgTable("customers", {
   tags: text("tags").array(),
   type: customerTypeEnum("type").notNull().default("INDIVIDUAL"),
   deletedAt: timestamp("deleted_at"),
-  userId: text("user_id").notNull(), // Clerk user ID
+  userId: text("user_id").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
